@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="next_tab" mtime="1367929195" type="string">
+		<stringvalue>&lt;Shift&gt;Right</stringvalue>
+	</entry>
+	<entry name="prev_tab" mtime="1367929193" type="string">
+		<stringvalue>&lt;Shift&gt;Left</stringvalue>
+	</entry>
+	<entry name="new_window" mtime="1367929176" type="string">
+		<stringvalue>&lt;Primary&gt;n</stringvalue>
+	</entry>
+	<entry name="new_tab" mtime="1367929174" type="string">
+		<stringvalue>&lt;Primary&gt;t</stringvalue>
+	</entry>
+</gconf>
