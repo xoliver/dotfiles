@@ -10,12 +10,12 @@ set incsearch
 set magic
 syntax enable
 
+autocmd FileType java setlocal noexpandtab smarttab
+
 set shiftwidth=4
 set tabstop=4
-set noexpandtab
+set expandtab
 set smarttab
-
-autocmd FileType py setlocal expandtab
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
