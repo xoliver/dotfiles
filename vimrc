@@ -1,7 +1,9 @@
 set history=700
 filetype plugin on
 filetype indent on
+
 set wildmenu
+set wildmode=longest,list,full
 
 set ignorecase
 set hlsearch
