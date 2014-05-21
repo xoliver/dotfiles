@@ -5,6 +5,7 @@
 	br = branch
 	di = diff
 	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    lg = log --graph --decorate --oneline --color --all
 	type = cat-file -t
 	dump = cat-file -p
 	amend = commit --amend -a
