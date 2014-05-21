@@ -1,7 +1,4 @@
 set history=700
-filetype plugin on
-filetype indent on
-
 set wildmenu
 set wildmode=longest,list,full
 
@@ -14,17 +11,20 @@ syntax enable
 
 autocmd FileType java setlocal noexpandtab smarttab
 
-set shiftwidth=4
-set tabstop=4
-set expandtab
 set smarttab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+set noexpandtab
 
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+	filetype on
+	filetype plugin indent on
 
-if has("autocmd")
-  filetype plugin indent on
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+	autocmd FileType python setlocal expandtab
 endif
 
 set showmatch		" Show matching brackets.
