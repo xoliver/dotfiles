@@ -71,10 +71,6 @@ endfunction
 " tagbar
 nmap <F8> :TagbarToggle<CR>
 
-" supertab
-au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-
 " syntastic
 let g:syntastic_python_checkers = ['flake8', 'pep8']
 
