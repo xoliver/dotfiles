@@ -83,6 +83,8 @@ let g:syntastic_python_checkers = ['flake8', 'pep8']
 " tomorrow-theme?
 " unite.vim
 " vim-airline
+" vim-commentary
+" vim-indent-object
 " vim-signify
 " vim-surround
 "
@@ -93,5 +95,7 @@ let g:syntastic_python_checkers = ['flake8', 'pep8']
 " git://github.com/majutsushi/tagbar
 " https://github.com/Shougo/unite.vim
 " https://github.com/bling/vim-airline
+" https://github.com/tpope/vim-commentary
+" http://github.com/michaeljsmith/vim-indent-object
 " https://github.com/mhinz/vim-signify
 " git://github.com/tpope/vim-surround.git
