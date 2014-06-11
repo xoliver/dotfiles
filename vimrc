@@ -1,5 +1,3 @@
-syntax on
-
 execute pathogen#infect()
 
 set history=700
@@ -44,7 +42,11 @@ if has("autocmd")
 
 	autocmd FileType python setlocal expandtab
 	autocmd FileType python let &colorcolumn=join(range(80,80),",") "Add red line at column 80 for python files
+	" autocmd FileType csv CSVHeader 1
 endif
+
+" It needs to be after filetype on for csv.vim
+syntax on
 
 " EXTERNAL PLUGINS THAT NEED INSTALLING
 
@@ -75,6 +77,7 @@ nmap <F8> :TagbarToggle<CR>
 let g:syntastic_python_checkers = ['flake8', 'pep8']
 
 " STUFF
+" csv.vim
 " jedi-vim
 " nerdtree
 " supertab
@@ -88,6 +91,7 @@ let g:syntastic_python_checkers = ['flake8', 'pep8']
 " vim-signify
 " vim-surround
 "
+" https://github.com/vim-scripts/csv.vim
 " https://github.com/davidhalter/jedi-vim.git -> pip install vim
 " https://github.com/vim-scripts/The-NERD-tree.git
 " https://github.com/ervandew/supertab.git
