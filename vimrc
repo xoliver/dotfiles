@@ -1,5 +1,6 @@
 execute pathogen#infect()
 
+set guioptions-=T  "remove toolbar
 set history=700
 set wildmenu	"Activate showing autocomplete menu
 set wildmode=longest,list,full	"Autocomplete as much as possible, do not go over options
