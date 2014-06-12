@@ -58,6 +58,12 @@ syntax on
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='dark'
 
+" Rainbow parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
 " signify
 let g:signify_vcs_list = ['git']
 
@@ -85,9 +91,13 @@ endfunction
 " https://github.com/bling/vim-airline				# airline
 " https://github.com/tpope/vim-commentary			# commentary
 " https://github.com/vim-scripts/csv.vim			# csv.vim
-" https://github.com/michaeljsmith/vim-indent-object	# indent-object
+" https://github.com/tpope/vim-fugitive				# fugitive (git)
+" https://github.com/nathanaelkane/vim-indent-guides# indent-guides(leaderig)
+" https://github.com/michaeljsmith/vim-indent-object# indent-object
 " https://github.com/davidhalter/jedi-vim.git		# jedi (pip install jedi)
 " https://github.com/vim-scripts/The-NERD-tree.git	# nerdtree
+" https://github.com/voithos/vim-python-matchit		# python-matchit
+" https://github.com/kien/rainbow_parentheses.vim	# rainbow_parentheses
 " https://github.com/mhinz/vim-signify				# signify
 " https://github.com/ervandew/supertab.git			# supertab
 " https://github.com/tpope/vim-surround.git			# surround
