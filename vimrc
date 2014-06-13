@@ -100,7 +100,6 @@ endfunction
 " https://github.com/voithos/vim-python-matchit		# python-matchit
 " https://github.com/kien/rainbow_parentheses.vim	# rainbow_parentheses
 " https://github.com/mhinz/vim-signify				# signify
-" https://github.com/ervandew/supertab.git			# supertab
 " https://github.com/tpope/vim-surround.git			# surround
 " https://github.com/scrooloose/syntastic.git		# syntastic
 " https://github.com/majutsushi/tagbar				# tagbar
