@@ -3,6 +3,8 @@ execute pathogen#infect()
 set t_Co=256
 set background=dark
 
+set guioptions-=T  "remove toolbar
+
 set history=700
 set wildmenu	"Activate showing autocomplete menu
 set wildmode=longest,list,full	"Autocomplete as much as possible, do not go over options
@@ -102,7 +104,6 @@ endfunction
 " https://github.com/voithos/vim-python-matchit		# python-matchit
 " https://github.com/kien/rainbow_parentheses.vim	# rainbow_parentheses
 " https://github.com/mhinz/vim-signify				# signify
-" https://github.com/ervandew/supertab.git			# supertab
 " https://github.com/tpope/vim-surround.git			# surround
 " https://github.com/scrooloose/syntastic.git		# syntastic
 " https://github.com/majutsushi/tagbar				# tagbar
