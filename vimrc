@@ -1,5 +1,8 @@
 execute pathogen#infect()
 
+set t_Co=256
+set background=dark
+
 set history=700
 set wildmenu	"Activate showing autocomplete menu
 set wildmode=longest,list,full	"Autocomplete as much as possible, do not go over options
@@ -40,13 +43,13 @@ if has("autocmd")
 	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 	autocmd FileType python setlocal expandtab
-	autocmd FileType python let &colorcolumn=join(range(80,80),",") "Add red line at column 80 for python files
+	autocmd FileType python let &colorcolumn=join(range(80,80),",")
 endif
 
 if has("gui_running")
 	colorscheme desert
 else
-	colorscheme Tomorrow
+	colorscheme Tomorrow-Night-Bright
 endif
 
 " It needs to be after filetype on for csv.vim
