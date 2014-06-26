@@ -74,6 +74,10 @@ fi
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+
 alias gitk='/Applications/GitX.app/Contents/MacOS/GitX'
 alias gitx='/Applications/GitX.app/Contents/MacOS/GitX'
 
