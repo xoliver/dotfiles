@@ -49,7 +49,7 @@ ZSH_THEME="muse"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git github vagrant zsh-syntax-highlighting git-flow brew)
+plugins=(git github vagrant zsh-syntax-highlighting git-flow brew pip)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -77,6 +77,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
+alias rmbk='rm -f *.pyc'
 
 alias gitk='/Applications/GitX.app/Contents/MacOS/GitX'
 alias gitx='/Applications/GitX.app/Contents/MacOS/GitX'
