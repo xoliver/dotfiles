@@ -55,7 +55,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin"
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/Users/xavier/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -81,6 +81,8 @@ alias rmbk='rm -f *.pyc'
 
 alias gitk='/Applications/GitX.app/Contents/MacOS/GitX'
 alias gitx='/Applications/GitX.app/Contents/MacOS/GitX'
+
+alias tmux='tmux -2'
 
 if [[ `ssh-add -l` != *id_rsa* ]]
 then
