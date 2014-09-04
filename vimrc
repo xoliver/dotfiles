@@ -57,6 +57,17 @@ endif
 " It needs to be after filetype on for csv.vim
 syntax on
 
+" Save your swp files to a less annoying place than the current directory.
+" " If you have .vim-swap in the current directory, it'll use that.
+" " Otherwise it saves it to ~/.vim/swap, ~/tmp or .
+if isdirectory($HOME . '/.vim/swap') == 0
+	:silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
+endif
+set directory=./.vim-swap//
+set directory+=~/.vim/swap//
+set directory+=~/tmp//
+set directory+=.
+
 """""""""" EXTERNAL PLUGINS THAT NEED INSTALLING
 
 " Airline
