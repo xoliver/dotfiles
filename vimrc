@@ -48,14 +48,23 @@ if has("autocmd")
 	autocmd FileType python let &colorcolumn=join(range(80,80),",")
 endif
 
+" It needs to be after filetype on for csv.vim
+syntax on
+
+" Always highlight unwanted spaces http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+" Define colour before colorscheme so it's not overriden
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" Enable colorscheme
 if has("gui_running")
 	colorscheme desert
 else
 	colorscheme Tomorrow-Night-Bright
 endif
-
-" It needs to be after filetype on for csv.vim
-syntax on
 
 " Save your swp files to a less annoying place than the current directory.
 " " If you have .vim-swap in the current directory, it'll use that.
