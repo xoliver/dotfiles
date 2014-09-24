@@ -74,6 +74,10 @@ fi
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# python virtualenv
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
