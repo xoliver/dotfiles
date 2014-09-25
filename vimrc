@@ -33,6 +33,9 @@ set number
 set foldmethod=indent
 set foldlevel=99
 
+" Split pane business
+set splitbelow
+set splitright
 
 " Status bar business
 set laststatus=2
@@ -80,7 +83,7 @@ set directory+=.
 """""""""" EXTERNAL PLUGINS THAT NEED INSTALLING
 
 " Airline
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0 "Do not show all open buffers on top bar (that way tabs show fine)
 let g:airline_theme='dark'
 
 " Rainbow parentheses
