@@ -67,6 +67,7 @@ if has("gui_running")
 	colorscheme desert
 else
 	colorscheme Tomorrow-Night-Bright
+	set mouse=a
 endif
 
 " Save your swp files to a less annoying place than the current directory.
