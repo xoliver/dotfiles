@@ -1,7 +1,40 @@
-execute pathogen#infect()
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" mkdir -p ~/.vim/bundle
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" vim +PluginInstall +qall
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'mileszs/ack.vim'
+Plugin 'bling/vim-airline'
+Plugin 'guns/vim-clojure-static.git'
+Plugin 'tpope/vim-commentary'
+Plugin 'vim-scripts/csv.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'davidhalter/jedi-vim.git'
+Plugin 'elzr/vim-json.git'
+Plugin 'terryma/vim-multiple-cursors.git'
+Plugin 'vim-scripts/The-NERD-tree.git'
+Plugin 'voithos/vim-python-matchit'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'mhinz/vim-signify'
+Plugin 'tpope/vim-surround.git'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'majutsushi/tagbar'
+Plugin 'Shougo/unite.vim'
+
+" Download and install this into your ~/.vim/colors :
+" https://raw.githubusercontent.com/chriskempson/vim-tomorrow-theme/master/colors/Tomorrow-Night-Bright.vim
+call vundle#end()
+filetype plugin indent on
 
 set t_Co=256
 set background=dark
+set clipboard=unnamed
 
 set guioptions-=T  "remove toolbar
 
@@ -37,6 +70,9 @@ set foldlevel=99
 set splitbelow
 set splitright
 
+" ctags business
+set tags=./tags;
+
 " Status bar business
 set laststatus=2
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
@@ -48,7 +84,7 @@ if has("autocmd")
 	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 	autocmd FileType python setlocal expandtab
-	autocmd FileType python let &colorcolumn=join(range(80,80),",")
+	autocmd FileType python let &colorcolumn=join(range(79,99),",")
 endif
 
 " It needs to be after filetype on for csv.vim
@@ -69,6 +105,9 @@ else
 	colorscheme Tomorrow-Night-Bright
 	set mouse=a
 endif
+
+" Too long lines should be mildly highlighted
+hi ColorColumn ctermbg=233 guibg=#444444
 
 " Save your swp files to a less annoying place than the current directory.
 " " If you have .vim-swap in the current directory, it'll use that.
@@ -117,19 +156,4 @@ endfunction
 
 """""""""" EXTERNAL PLUGINS, NAME + SOURCE
 
-" https://github.com/bling/vim-airline				# airline
-" https://github.com/tpope/vim-commentary			# commentary
-" https://github.com/vim-scripts/csv.vim			# csv.vim
-" https://github.com/tpope/vim-fugitive				# fugitive (git)
-" https://github.com/nathanaelkane/vim-indent-guides# indent-guides(leaderig)
-" https://github.com/michaeljsmith/vim-indent-object# indent-object
-" https://github.com/davidhalter/jedi-vim.git		# jedi (pip install jedi)
-" https://github.com/vim-scripts/The-NERD-tree.git	# nerdtree
-" https://github.com/voithos/vim-python-matchit		# python-matchit
-" https://github.com/kien/rainbow_parentheses.vim	# rainbow_parentheses
-" https://github.com/mhinz/vim-signify				# signify
-" https://github.com/tpope/vim-surround.git			# surround
-" https://github.com/scrooloose/syntastic.git		# syntastic
-" https://github.com/majutsushi/tagbar				# tagbar
-" https://github.com/chriskempson/tomorrow-theme	# tomorrow-theme (copyfiles)
-" https://github.com/Shougo/unite.vim				# unite
+
