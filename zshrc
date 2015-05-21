@@ -55,8 +55,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/Users/xavier/bin"
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/Users/xavier/bin:/usr/local/opt/go/libexec/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
+export GOPATH="/usr/local/Cellar/go/1.3.1/"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -77,14 +78,17 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # python virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
+export PYTHONDONTWRITEBYTECODE=1
 
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
-alias rmbk='rm -f *.pyc'
+alias rmbk='find . -name "*.pyc" -delete'
+alias sl='sl -aF'
 
 alias gitk='/Applications/GitX.app/Contents/MacOS/GitX'
 alias gitx='/Applications/GitX.app/Contents/MacOS/GitX'
+alias sub='/Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2'
 
 alias tmux='tmux -2'
 
@@ -93,3 +97,6 @@ then
 	echo "Adding ssh key to ssh-agent"
 	ssh-add ~/.ssh/id_rsa
 fi
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
