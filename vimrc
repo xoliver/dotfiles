@@ -26,6 +26,7 @@ Plugin 'tpope/vim-surround.git'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'majutsushi/tagbar'
 Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc.vim'  "Must recompile with make -f make_mac.mak in folder!!
 
 " Download and install this into your ~/.vim/colors :
 " https://raw.githubusercontent.com/chriskempson/vim-tomorrow-theme/master/colors/Tomorrow-Night-Bright.vim
@@ -84,7 +85,7 @@ if has("autocmd")
 	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 	autocmd FileType python setlocal expandtab
-	autocmd FileType python let &colorcolumn=join(range(79,99),",")
+	autocmd FileType python let &colorcolumn=join(range(80,100),",")
 endif
 
 " It needs to be after filetype on for csv.vim
@@ -139,13 +140,24 @@ let g:signify_vcs_list = ['git']
 nmap <F8> :TagbarToggle<CR>
 
 " syntastic
-let g:syntastic_python_checkers = ['flake8', 'pep8']
+let g:syntastic_python_pylint_post_args="--max-line-length=99"
+let g:syntastic_python_checkers = ['flake8']
 
-" unite.vim (from John)
-let g:unite_source_rec_async_command= 'ag --nocolor --nogroup --hidden -g  --ignore=htmlcov""'
+" unite.vim
+" Cool flags: -quick-match -auto-preview
 call unite#filters#matcher_default#use(['matcher_fuzzy'])  " Use fuzzy matching
-nmap <leader>p :Unite -no-split -start-insert file_rec<cr>
-nmap <leader>l :Unite -no-split buffer<cr>
+nmap <leader>p :Unite -no-split -start-insert -buffer-name=files file_rec/async<CR>
+nmap <leader>l :Unite -no-split -buffer-name=buffers buffer<CR>
+nmap <space>/ :Unite -no-split -auto-preview grep:.<CR>
+
+let g:unite_source_history_yank_enable = 1
+nmap <leader>y :Unite -no-split -buffer-name=yank history/yank<cr>
+
+if executable('ack')
+	let g:unite_source_grep_command = 'ack'
+	let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
+	let g:unite_source_grep_recursive_opt = ''
+endif
 
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
@@ -153,7 +165,3 @@ function! s:unite_my_settings()
     imap <buffer> <C-j> <C-n>
     imap <buffer> <C-k> <C-p>
 endfunction
-
-"""""""""" EXTERNAL PLUGINS, NAME + SOURCE
-
-
