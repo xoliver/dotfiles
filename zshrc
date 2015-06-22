@@ -55,7 +55,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/Users/xavier/bin:/usr/local/opt/go/libexec/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/Users/xavier/bin:/usr/local/opt/go/libexec/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 export GOPATH="/usr/local/Cellar/go/1.3.1/"
 
