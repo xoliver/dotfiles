@@ -9,24 +9,33 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'mileszs/ack.vim'
 Plugin 'bling/vim-airline'
+Plugin 'vim-scripts/argtextobj.vim'
 Plugin 'guns/vim-clojure-static.git'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-scripts/csv.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'davidhalter/jedi-vim.git'
 Plugin 'elzr/vim-json.git'
 Plugin 'terryma/vim-multiple-cursors.git'
-Plugin 'vim-scripts/The-NERD-tree.git'
 Plugin 'voithos/vim-python-matchit'
 Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'mhinz/vim-signify'
 Plugin 'tpope/vim-surround.git'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-unimpaired'
 Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/unite-outline'
 Plugin 'Shougo/vimproc.vim'  "Must recompile with make -f make_mac.mak in folder!!
+Plugin 'xolox/vim-easytags'
+Plugin 'xolox/vim-misc'  "Required by vim-easytags
+Plugin 'tpope/vim-repeat'
+
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets' "Rquired by ultisnips
+
 
 " Download and install this into your ~/.vim/colors :
 " https://raw.githubusercontent.com/chriskempson/vim-tomorrow-theme/master/colors/Tomorrow-Night-Bright.vim
@@ -35,7 +44,9 @@ filetype plugin indent on
 
 set t_Co=256
 set background=dark
-set clipboard=unnamed
+set clipboard=unnamed  "Enable copy-paste through tmux
+
+set confirm  "Confirm when switching away from unsaved tab
 
 set guioptions-=T  "remove toolbar
 
@@ -99,6 +110,9 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
+" Make the folder explorer look nicer
+let g:netrw_liststyle=3
+
 " Enable colorscheme
 if has("gui_running")
 	colorscheme desert
@@ -139,17 +153,31 @@ let g:signify_vcs_list = ['git']
 " tagbar
 nmap <F8> :TagbarToggle<CR>
 
+" jedi-vim
+let g:jedi#use_splits_not_buffers = "top"
+let g:jedi#popup_on_dot = 0
+
+" ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " syntastic
+let g:syntastic_always_populate_loc_list = 1 "Make it populate loclist (like error) so :lnext/lprev work
 let g:syntastic_python_pylint_post_args="--max-line-length=99"
 let g:syntastic_python_checkers = ['flake8']
 
 " unite.vim
 " Cool flags: -quick-match -auto-preview
-call unite#filters#matcher_default#use(['matcher_fuzzy'])  " Use fuzzy matching
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" Recursive file opening, asynchronous
 nmap <leader>p :Unite -no-split -start-insert -buffer-name=files file_rec/async<CR>
-nmap <leader>l :Unite -no-split -buffer-name=buffers buffer<CR>
+" Show open buffers
+nmap <leader>l :Unite -no-split -quick-match -buffer-name=buffers buffer<CR>
+" Show outline
+nmap <leader>o :Unite -auto-preview -no-split -buffer-name=outline -start-insert outline<CR>
+" Launch file search
 nmap <space>/ :Unite -no-split -auto-preview grep:.<CR>
-
+" Yank history search
 let g:unite_source_history_yank_enable = 1
 nmap <leader>y :Unite -no-split -buffer-name=yank history/yank<cr>
 
@@ -157,6 +185,11 @@ if executable('ack')
 	let g:unite_source_grep_command = 'ack'
 	let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
 	let g:unite_source_grep_recursive_opt = ''
+endif
+
+if executable('ag')
+	" Use ag for recursive file search - will ignore stuff in .gitignore :-)
+	let g:unite_source_rec_async_command= 'ag --nocolor --nogroup --hidden -g ""'
 endif
 
 autocmd FileType unite call s:unite_my_settings()
