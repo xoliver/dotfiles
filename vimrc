@@ -13,6 +13,7 @@ Plugin 'vim-scripts/argtextobj.vim'
 Plugin 'guns/vim-clojure-static.git'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-scripts/csv.vim'
+Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -25,6 +26,7 @@ Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'tpope/vim-surround.git'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'majutsushi/tagbar'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/unite-outline'
@@ -34,7 +36,7 @@ Plugin 'xolox/vim-misc'  "Required by vim-easytags
 Plugin 'tpope/vim-repeat'
 
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets' "Rquired by ultisnips
+Plugin 'honza/vim-snippets' "Required by ultisnips
 
 
 " Download and install this into your ~/.vim/colors :
@@ -84,6 +86,9 @@ set splitright
 
 " ctags business
 set tags=./tags;
+
+" easymotion business
+let g:EasyMotion_smartcase = 1
 
 " Status bar business
 set laststatus=2
@@ -154,7 +159,7 @@ let g:signify_vcs_list = ['git']
 nmap <F8> :TagbarToggle<CR>
 
 " jedi-vim
-let g:jedi#use_splits_not_buffers = "top"
+let g:jedi#use_splits_not_buffers = "right"
 let g:jedi#popup_on_dot = 0
 
 " ultisnips
@@ -165,6 +170,14 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:syntastic_always_populate_loc_list = 1 "Make it populate loclist (like error) so :lnext/lprev work
 let g:syntastic_python_pylint_post_args="--max-line-length=99"
 let g:syntastic_python_checkers = ['flake8']
+
+" vim-tmux-navigator
+let g:tmux_navigator_no_mappings = 1  "Screw default mappings: Control+hjkl
+nnoremap <silent> <C-W>h :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-W>j :TmuxNavigateDown<cr>
+nnoremap <silent> <C-W>k :TmuxNavigateUp<cr>
+nnoremap <silent> <C-W>l :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
 " unite.vim
 " Cool flags: -quick-match -auto-preview
@@ -198,3 +211,5 @@ function! s:unite_my_settings()
     imap <buffer> <C-j> <C-n>
     imap <buffer> <C-k> <C-p>
 endfunction
+
+nnoremap <leader>a :Ack<space>
