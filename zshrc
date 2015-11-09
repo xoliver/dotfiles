@@ -89,6 +89,7 @@ alias sl='sl -aF'
 alias gitk='/Applications/GitX.app/Contents/MacOS/GitX'
 alias gitx='/Applications/GitX.app/Contents/MacOS/GitX'
 alias sub='/Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2'
+alias tmux='tmux -2'  # Colours!
 
 alias tmux='tmux -2'
 
