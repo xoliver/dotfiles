@@ -23,6 +23,7 @@ Plugin 'elzr/vim-json.git'
 Plugin 'terryma/vim-multiple-cursors.git'
 Plugin 'voithos/vim-python-matchit'
 Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'tmhedberg/SimpylFold'
 Plugin 'tpope/vim-surround.git'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'majutsushi/tagbar'
@@ -31,8 +32,8 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/unite-outline'
 Plugin 'Shougo/vimproc.vim'  "Must recompile with make -f make_mac.mak in folder!!
-Plugin 'xolox/vim-easytags'
-Plugin 'xolox/vim-misc'  "Required by vim-easytags
+" Plugin 'xolox/vim-easytags'    "SLOOOOOOWS THINGS DOWN
+" Plugin 'xolox/vim-misc'  "Required by vim-easytags
 Plugin 'tpope/vim-repeat'
 
 Plugin 'SirVer/ultisnips'
@@ -56,6 +57,7 @@ set history=700
 set wildmenu	"Activate showing autocomplete menu
 set wildmode=longest,list,full	"Autocomplete as much as possible, do not go over options
 
+
 " Search business
 set ignorecase
 set hlsearch
@@ -74,7 +76,13 @@ set shiftwidth=4
 
 set noexpandtab
 
-set number
+set number	"Show line numbers
+set relativenumber   "Show relative line numbers
+set scrolloff=5   "Offset when scrolling
+set cursorline    "Show active line
+"Show absolute line numbers in insert mode, relative otherwise
+autocmd InsertEnter * :set norelativenumber
+autocmd InsertLeave * :set relativenumber
 
 " Fold business
 set foldmethod=indent
@@ -202,7 +210,7 @@ endif
 
 if executable('ag')
 	" Use ag for recursive file search - will ignore stuff in .gitignore :-)
-	let g:unite_source_rec_async_command= 'ag --nocolor --nogroup --hidden -g ""'
+	let g:unite_source_rec_async_command= 'ag --follow --nocolor --nogroup --hidden -g ""'
 endif
 
 autocmd FileType unite call s:unite_my_settings()
@@ -213,3 +221,16 @@ function! s:unite_my_settings()
 endfunction
 
 nnoremap <leader>a :Ack<space>
+
+let g:easytags_async = 1
+
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+" Enable folding with the spacebar
+nnoremap <space> za
+let g:SimpylFold_docstring_preview=1
+let g:SimpylFold_fold_docstring = 0
