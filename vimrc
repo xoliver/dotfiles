@@ -7,9 +7,11 @@ call vundle#begin()
 " vim +PluginInstall +qall
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/argtextobj.vim'
+Plugin 'FooSoft/vim-argwrap'					"Wrap/unwrap things
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'guns/vim-clojure-static.git'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-scripts/csv.vim'
@@ -21,26 +23,39 @@ Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'davidhalter/jedi-vim.git'
 Plugin 'elzr/vim-json.git'
 Plugin 'terryma/vim-multiple-cursors.git'
+Plugin 'alfredodeza/pytest.vim'
 Plugin 'voithos/vim-python-matchit'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'tpope/vim-surround.git'
 Plugin 'scrooloose/syntastic.git'
-Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/SyntaxRange'  "Used by vimdeck
+Plugin 'vim-scripts/ingo-library'  "Used by vimdeck
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/unite-outline'
 Plugin 'Shougo/vimproc.vim'  "Must recompile with make -f make_mac.mak in folder!!
-" Plugin 'xolox/vim-easytags'    "SLOOOOOOWS THINGS DOWN
-" Plugin 'xolox/vim-misc'  "Required by vim-easytags
+Plugin 'benmills/vimux'
 Plugin 'tpope/vim-repeat'
 
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets' "Required by ultisnips
 
+" Clojure/etc
+Plugin 'tpope/vim-fireplace'
+Plugin 'guns/vim-sexp'
 
-" Download and install this into your ~/.vim/colors :
+" Try out org-mode, vimwiki
+Plugin 'jceb/vim-orgmode'
+Plugin 'tpope/vim-speeddating'
+Plugin 'vimwiki/vimwiki'
+Plugin 'justinmk/vim-sneak'
+Plugin 'godlygeek/tabular'
+" Plugin 'plasticboy/vim-markdown'
+
+" Download and install this into ~/.vim/colors :
 " https://raw.githubusercontent.com/chriskempson/vim-tomorrow-theme/master/colors/Tomorrow-Night-Bright.vim
 call vundle#end()
 filetype plugin indent on
@@ -78,7 +93,7 @@ set noexpandtab
 
 set number	"Show line numbers
 set relativenumber   "Show relative line numbers
-set scrolloff=5   "Offset when scrolling
+set scrolloff=10   "Offset when scrolling
 set cursorline    "Show active line
 "Show absolute line numbers in insert mode, relative otherwise
 autocmd InsertEnter * :set norelativenumber
@@ -110,18 +125,15 @@ if has("autocmd")
 
 	autocmd FileType python setlocal expandtab
 	autocmd FileType python let &colorcolumn=join(range(80,100),",")
+	autocmd FileType python let g:argwrap_tail_comma = 1	"Add trailing comma when wrapping
 endif
 
 " It needs to be after filetype on for csv.vim
 syntax on
 
-" Always highlight unwanted spaces http://vim.wikia.com/wiki/Highlight_unwanted_spaces
-" Define colour before colorscheme so it's not overriden
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+" Stay in visual mode when indenting
+vnoremap < <gv
+vnoremap > >gv
 
 " Make the folder explorer look nicer
 let g:netrw_liststyle=3
@@ -163,9 +175,6 @@ au Syntax * RainbowParenthesesLoadBraces
 " signify
 let g:signify_vcs_list = ['git']
 
-" tagbar
-nmap <F8> :TagbarToggle<CR>
-
 " jedi-vim
 let g:jedi#use_splits_not_buffers = "right"
 let g:jedi#popup_on_dot = 0
@@ -187,6 +196,11 @@ nnoremap <silent> <C-W>k :TmuxNavigateUp<cr>
 nnoremap <silent> <C-W>l :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
+" pytest.vim
+nmap <silent><Leader>f <Esc>:Pytest file<CR>
+nmap <silent><Leader>c <Esc>:Pytest class<CR>
+nmap <silent><Leader>m <Esc>:Pytest method<CR>
+
 " unite.vim
 " Cool flags: -quick-match -auto-preview
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -202,15 +216,12 @@ nmap <space>/ :Unite -no-split -auto-preview grep:.<CR>
 let g:unite_source_history_yank_enable = 1
 nmap <leader>y :Unite -no-split -buffer-name=yank history/yank<cr>
 
-if executable('ack')
-	let g:unite_source_grep_command = 'ack'
-	let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
-	let g:unite_source_grep_recursive_opt = ''
-endif
-
 if executable('ag')
 	" Use ag for recursive file search - will ignore stuff in .gitignore :-)
-	let g:unite_source_rec_async_command= 'ag --follow --nocolor --nogroup --hidden -g ""'
+	" -- update: it does not ignore .tox at least :-(
+	let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --hidden -g --ignore-dir=.tox/""'
+	" let g:unite_source_grep_command = 'ag'
+	" let g:unite_source_grep_default_opts = '--nocolor --nogroup --hidden'
 endif
 
 autocmd FileType unite call s:unite_my_settings()
@@ -220,7 +231,9 @@ function! s:unite_my_settings()
     imap <buffer> <C-k> <C-p>
 endfunction
 
-nnoremap <leader>a :Ack<space>
+nnoremap <leader>a :Ag<space>
+
+nnoremap <silent> <leader>w :ArgWrap<CR>
 
 let g:easytags_async = 1
 
@@ -234,3 +247,26 @@ set foldlevel=99
 nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
 let g:SimpylFold_fold_docstring = 0
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+
+" Need to include ~/.vim/bundle/unite-outline/autoload/unite/sources/outline/vimwiki.vim
+" Clone of defaul markdown.vim to bypass limitations sine outline-vimwiki won't work
+let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
