@@ -55,6 +55,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+export TERM=screen-256color
+
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/Users/xavier/bin:/usr/local/opt/go/libexec/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 export GOPATH="/usr/local/Cellar/go/1.3.1/"
@@ -101,3 +103,20 @@ fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# Setting for the new UTF-8 terminal support in Lion
+LC_CTYPE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+
+weather() {
+	# Retrieve weather information based on that amazing website
+	# Optional argument: airport code (lowercase?)
+	if [ "$#" -ne 1  ]; then
+		location="edi"
+	else
+		location="$1"
+	fi
+	curl http://wttr.in/"$location";
+}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
