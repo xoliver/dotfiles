@@ -1,63 +1,83 @@
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" mkdir -p ~/.vim/bundle
-" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" vim +PluginInstall +qall
-Plugin 'gmarik/Vundle.vim'
+""" Dein
 
-Plugin 'rking/ag.vim'
-Plugin 'bling/vim-airline'
-Plugin 'vim-scripts/argtextobj.vim'
-Plugin 'FooSoft/vim-argwrap'					"Wrap/unwrap things
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'guns/vim-clojure-static.git'
-Plugin 'tpope/vim-commentary'
-Plugin 'vim-scripts/csv.vim'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'davidhalter/jedi-vim.git'
-Plugin 'elzr/vim-json.git'
-Plugin 'terryma/vim-multiple-cursors.git'
-Plugin 'alfredodeza/pytest.vim'
-Plugin 'voithos/vim-python-matchit'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'tpope/vim-surround.git'
-Plugin 'scrooloose/syntastic.git'
-Plugin 'vim-scripts/SyntaxRange'  "Used by vimdeck
-Plugin 'vim-scripts/ingo-library'  "Used by vimdeck
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/unite-outline'
-Plugin 'Shougo/vimproc.vim'  "Must recompile with make -f make_mac.mak in folder!!
-Plugin 'benmills/vimux'
-Plugin 'tpope/vim-repeat'
+"""" Settings/start
+if &compatible
+  set nocompatible               " Be iMproved
+endif
 
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets' "Required by ultisnips
+set runtimepath^=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-" Clojure/etc
-Plugin 'tpope/vim-fireplace'
-Plugin 'guns/vim-sexp'
+call dein#begin(expand('~/.vim/dein'))
 
-" Try out org-mode, vimwiki
-Plugin 'jceb/vim-orgmode'
-Plugin 'tpope/vim-speeddating'
-Plugin 'vimwiki/vimwiki'
-Plugin 'justinmk/vim-sneak'
-Plugin 'godlygeek/tabular'
-" Plugin 'plasticboy/vim-markdown'
+call dein#add('Shougo/dein.vim')
+
+" If you want to install not installed plugins on startup.
+"if dein#check_install()
+"  call dein#install()
+"endif
+
+"""" Misc
+call dein#add('bling/vim-airline')
+call dein#add('jiangmiao/auto-pairs')
+call dein#add('kien/rainbow_parentheses.vim')
+call dein#add('tmhedberg/SimpylFold')
+call dein#add('tpope/vim-surround.git')
+call dein#add('christoomey/vim-tmux-navigator')
+call dein#add('bronson/vim-trailing-whitespace')
+call dein#add('tpope/vim-unimpaired')
+call dein#add('benmills/vimux')
+call dein#add('tpope/vim-repeat')
+call dein#add('justinmk/vim-sneak')
+call dein#add('lfv89/vim-interestingwords')  " leader-k to mark words (nN to move around once over it), leader-K to unmark all
+
+"""" Coding
+call dein#add('FooSoft/vim-argwrap')					"Wrap/unwrap things
+call dein#add('scrooloose/syntastic.git')
+call dein#add('tpope/vim-commentary')
+call dein#add('honza/vim-snippets') "Required by ultisnips
+call dein#add('SirVer/ultisnips')
+
+"""" Git
+call dein#add('tpope/vim-fugitive')
+call dein#add('airblade/vim-gitgutter')
+
+"""" Objects
+call dein#add('vim-scripts/argtextobj.vim')
+call dein#add('michaeljsmith/vim-indent-object')
+
+"""" Python
+call dein#add('alfredodeza/pytest.vim', {'on_ft': 'python'})
+call dein#add('voithos/vim-python-matchit', {'on_ft': 'python'})
+call dein#add('davidhalter/jedi-vim.git', {'on_ft': 'python'})
+
+"""" Specific file types
+call dein#add('vim-scripts/csv.vim', {'on_ft': 'csv'})
+call dein#add('elzr/vim-json.git', {'on_ft': ['javascript', 'json']})
+
+"""" Unite
+call dein#add('Shougo/vimproc.vim', {'build': 'make'})  " Dependency
+call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/unite-outline')
+call dein#add('Shougo/neoyank.vim')
+
+"""" Clojure/etc
+call dein#add('guns/vim-clojure-static.git', {'on_ft': 'clojure'})
+call dein#add('tpope/vim-fireplace', {'on_ft': 'clojure'})
+call dein#add('guns/vim-sexp', {'on_ft': 'clojure'})
+
+"""" Try out
+" call dein#add('jceb/vim-orgmode')
+call dein#add('tpope/vim-speeddating')  "Required by vimwiki
+call dein#add('vimwiki/vimwiki')
+" call dein#add('plasticboy/vim-markdown')
 
 " Download and install this into ~/.vim/colors :
 " https://raw.githubusercontent.com/chriskempson/vim-tomorrow-theme/master/colors/Tomorrow-Night-Bright.vim
-call vundle#end()
+call dein#end()
+
+" End dein Scripts-------------------------
+
+""" Internal
 filetype plugin indent on
 
 set t_Co=256
@@ -68,7 +88,7 @@ set confirm  "Confirm when switching away from unsaved tab
 
 set guioptions-=T  "remove toolbar
 
-set history=700
+set history=1000
 set wildmenu	"Activate showing autocomplete menu
 set wildmode=longest,list,full	"Autocomplete as much as possible, do not go over options
 
@@ -77,8 +97,8 @@ set wildmode=longest,list,full	"Autocomplete as much as possible, do not go over
 set ignorecase
 set hlsearch
 set incsearch
-
-set showmatch		" Show matching brackets.
+" Show matching brackets
+set showmatch
 
 set magic
 syntax enable
@@ -88,9 +108,9 @@ set smarttab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-
 set noexpandtab
 
+""" Scroll, line numbers
 set number	"Show line numbers
 set relativenumber   "Show relative line numbers
 set scrolloff=10   "Offset when scrolling
@@ -110,13 +130,11 @@ set splitright
 " ctags business
 set tags=./tags;
 
-" easymotion business
-let g:EasyMotion_smartcase = 1
-
 " Status bar business
 set laststatus=2
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
+""" Autocmd
 if has("autocmd")
 	filetype on
 	filetype plugin indent on
@@ -128,8 +146,16 @@ if has("autocmd")
 	autocmd FileType python let g:argwrap_tail_comma = 1	"Add trailing comma when wrapping
 endif
 
-" It needs to be after filetype on for csv.vim
-syntax on
+
+nmap <silent><Leader>wb <Esc>:call HighlightBulletPoints()<CR>
+function! HighlightBulletPoints()
+	syn match TodoBullets /^[\*\-\+] \[ \]/
+	highlight TodoBullets ctermfg=black ctermbg=red
+	syn match HalfwayBullets /^[\*\-\+] \[[^X ]\] /
+	highlight HalfwayBullets ctermfg=black ctermbg=yellow
+	syn match DoneBullets /^[\*\-\+] \[X\] /
+	highlight DoneBullets ctermfg=green
+endfunction
 
 " Stay in visual mode when indenting
 vnoremap < <gv
@@ -138,7 +164,7 @@ vnoremap > >gv
 " Make the folder explorer look nicer
 let g:netrw_liststyle=3
 
-" Enable colorscheme
+""" Colours
 if has("gui_running")
 	colorscheme desert
 else
@@ -149,6 +175,10 @@ endif
 " Too long lines should be mildly highlighted
 hi ColorColumn ctermbg=233 guibg=#444444
 
+" It needs to be after filetype on for csv.vim
+syntax on
+
+""" Files, folders
 " Save your swp files to a less annoying place than the current directory.
 " " If you have .vim-swap in the current directory, it'll use that.
 " " Otherwise it saves it to ~/.vim/swap, ~/tmp or .
@@ -160,7 +190,7 @@ set directory+=~/.vim/swap//
 set directory+=~/tmp//
 set directory+=.
 
-"""""""""" EXTERNAL PLUGINS THAT NEED INSTALLING
+""" External plugins
 
 " Airline
 let g:airline#extensions#tabline#enabled = 0 "Do not show all open buffers on top bar (that way tabs show fine)
@@ -214,14 +244,12 @@ nmap <leader>o :Unite -auto-preview -no-split -buffer-name=outline -start-insert
 nmap <space>/ :Unite -no-split -auto-preview grep:.<CR>
 " Yank history search
 let g:unite_source_history_yank_enable = 1
-nmap <leader>y :Unite -no-split -buffer-name=yank history/yank<cr>
+nmap <leader>y :Unite -no-split -quick-match -buffer-name=yanks history/yank<cr>
 
 if executable('ag')
 	" Use ag for recursive file search - will ignore stuff in .gitignore :-)
 	" -- update: it does not ignore .tox at least :-(
 	let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --hidden -g --ignore-dir=.tox/""'
-	" let g:unite_source_grep_command = 'ag'
-	" let g:unite_source_grep_default_opts = '--nocolor --nogroup --hidden'
 endif
 
 autocmd FileType unite call s:unite_my_settings()
@@ -231,11 +259,7 @@ function! s:unite_my_settings()
     imap <buffer> <C-k> <C-p>
 endfunction
 
-nnoremap <leader>a :Ag<space>
-
 nnoremap <silent> <leader>w :ArgWrap<CR>
-
-let g:easytags_async = 1
 
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
@@ -270,3 +294,9 @@ let g:rbpt_colorpairs = [
 " Need to include ~/.vim/bundle/unite-outline/autoload/unite/sources/outline/vimwiki.vim
 " Clone of defaul markdown.vim to bypass limitations sine outline-vimwiki won't work
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+
+
+""" Auto-folding settings to display vimrc (reminder: zR undoes all folds)
+" -vim:fdm=expr:fdl=0
+" -vim:fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-2)\:'='"
+
