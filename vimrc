@@ -1,81 +1,67 @@
-""" Dein
+" Install vim plug
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-"""" Settings/start
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-set runtimepath^=~/.vim/dein/repos/github.com/Shougo/dein.vim
-
-call dein#begin(expand('~/.vim/dein'))
-
-call dein#add('Shougo/dein.vim')
-
-" If you want to install not installed plugins on startup.
-"if dein#check_install()
-"  call dein#install()
-"endif
+call plug#begin('~/.vim/plugged')
 
 """" Misc
-call dein#add('bling/vim-airline')
-call dein#add('jiangmiao/auto-pairs')
-call dein#add('kien/rainbow_parentheses.vim')
-call dein#add('tmhedberg/SimpylFold')
-call dein#add('tpope/vim-surround.git')
-call dein#add('christoomey/vim-tmux-navigator')
-call dein#add('bronson/vim-trailing-whitespace')
-call dein#add('tpope/vim-unimpaired')
-call dein#add('benmills/vimux')
-call dein#add('tpope/vim-repeat')
-call dein#add('justinmk/vim-sneak')
-call dein#add('lfv89/vim-interestingwords')  " leader-k to mark words (nN to move around once over it), leader-K to unmark all
+Plug 'bling/vim-airline'
+Plug 'jiangmiao/auto-pairs'
+Plug 'lfv89/vim-interestingwords'  " leader-k to mark words (nN to move around once over it, leader-K to unmark all)
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'tmhedberg/SimpylFold'
+Plug 'tpope/vim-surround'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'tpope/vim-unimpaired'
+Plug 'benmills/vimux'
+Plug 'tpope/vim-repeat'
+Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-speeddating'  | Plug 'vimwiki/vimwiki'
 
 """" Coding
-call dein#add('FooSoft/vim-argwrap')					"Wrap/unwrap things
-call dein#add('scrooloose/syntastic.git')
-call dein#add('tpope/vim-commentary')
-call dein#add('honza/vim-snippets') "Required by ultisnips
-call dein#add('SirVer/ultisnips')
+Plug 'FooSoft/vim-argwrap'					"Wrap/unwrap things
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-commentary'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 """" Git
-call dein#add('tpope/vim-fugitive')
-call dein#add('airblade/vim-gitgutter')
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 """" Objects
-call dein#add('vim-scripts/argtextobj.vim')
-call dein#add('michaeljsmith/vim-indent-object')
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'michaeljsmith/vim-indent-object'
 
 """" Python
-call dein#add('alfredodeza/pytest.vim', {'on_ft': 'python'})
-call dein#add('voithos/vim-python-matchit', {'on_ft': 'python'})
-call dein#add('davidhalter/jedi-vim.git', {'on_ft': 'python'})
+Plug 'alfredodeza/pytest.vim', {'for': 'python'}
+Plug 'voithos/vim-python-matchit', {'for': 'python'}
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
 
 """" Specific file types
-call dein#add('vim-scripts/csv.vim', {'on_ft': 'csv'})
-call dein#add('elzr/vim-json.git', {'on_ft': ['javascript', 'json']})
+Plug 'vim-scripts/csv.vim', {'for': 'csv'}
+Plug 'elzr/vim-json', {'for': ['javascript', 'json']}
 
 """" Unite
-call dein#add('Shougo/vimproc.vim', {'build': 'make'})  " Dependency
-call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/unite-outline')
-call dein#add('Shougo/neoyank.vim')
+Plug 'Shougo/vimproc.vim', {'do': 'make'}  | Plug 'Shougo/unite.vim'
+Plug 'Shougo/unite-outline'
+Plug 'Shougo/neoyank.vim'
 
 """" Clojure/etc
-call dein#add('guns/vim-clojure-static.git', {'on_ft': 'clojure'})
-call dein#add('tpope/vim-fireplace', {'on_ft': 'clojure'})
-call dein#add('guns/vim-sexp', {'on_ft': 'clojure'})
+Plug 'guns/vim-clojure-static', {'for': 'clojure'}
+Plug 'tpope/vim-fireplace', {'for': 'clojure'}
+Plug 'guns/vim-sexp', {'for': 'clojure'}
 
 """" Try out
-" call dein#add('jceb/vim-orgmode')
-call dein#add('tpope/vim-speeddating')  "Required by vimwiki
-call dein#add('vimwiki/vimwiki')
-" call dein#add('plasticboy/vim-markdown')
+" Plug 'jceb/vim-orgmode'
+" Plug 'plasticboy/vim-markdown'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Download and install this into ~/.vim/colors :
 " https://raw.githubusercontent.com/chriskempson/vim-tomorrow-theme/master/colors/Tomorrow-Night-Bright.vim
-call dein#end()
 
-" End dein Scripts-------------------------
+call plug#end()
+
 
 """ Internal
 filetype plugin indent on
