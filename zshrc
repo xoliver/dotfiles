@@ -49,7 +49,7 @@ ZSH_THEME="muse"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git github vagrant zsh-syntax-highlighting git-flow brew pip)
+plugins=(git github vagrant zsh-syntax-highlighting git-flow brew pip taskwarrior tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -92,8 +92,11 @@ alias gitk='/Applications/GitX.app/Contents/MacOS/GitX'
 alias gitx='/Applications/GitX.app/Contents/MacOS/GitX'
 alias sub='/Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2'
 alias tmux='tmux -2'  # Colours!
+alias sz='source ~/.zshrc'
+alias vz='vim ~/.zshrc'
+alias vv='vim ~/.vimrc'
 
-alias tmux='tmux -2'
+alias q='make quicktest'
 
 if [[ `ssh-add -l` != *id_rsa* ]]
 then
@@ -110,13 +113,70 @@ LC_ALL=en_US.UTF-8
 
 weather() {
 	# Retrieve weather information based on that amazing website
-	# Optional argument: airport code (lowercase?)
+	# Optional argument: airport code or city name
 	if [ "$#" -ne 1  ]; then
-		location="edi"
+		location="edinburgh"
 	else
 		location="$1"
 	fi
 	curl http://wttr.in/"$location";
 }
 
+moon() {
+	# Retrieve moon information based on that amazing website
+	# Optional argument: date (YYY-MM-DD)
+	if [ "$#" -ne 1  ]; then
+		date=""
+	else
+		date="$1"
+	fi
+	curl http://wttr.in/Moon@$date;
+}
+
+# Make sure fzf uses ag so git/svn/hg ignores are taken into account
+export FZF_DEFAULT_COMMAND='ag -g ""'  # Default use case
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND  # CTRL+T shortcut
+_fzf_compgen_path() {  # ** completion
+	ag -g "" "$1"
+}
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Terminal markers (bookmarks): https://github.com/pindexis/marker#installation
+export MARKER_KEY_MARK="\C-v"  # Stop using CTRL+K for this - add stuff with "marker mark"
+[[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
+# Hook for desk activation
+[ -n "$DESK_ENV" ] && source "$DESK_ENV" || true
+
+# run to specified command
+# zsh completion in ~/.oh-my-zsh/completions/_runto
+runto() {
+	if [ "$#" -ne 1 ]
+	then
+		echo "You need to specify where to run to"
+		return
+	fi
+
+	local file=~/.runto/$1.sh
+	if [[ -r  ${file} ]]
+	then
+		echo "Running to $1!"
+		. $file
+	else
+		echo "Cannot run to $1, not found!"
+	fi
+}
+
+# Codi
+# Usage: codi [filename]  (was [filetype] [filename])
+codi() {
+  # local syntax="${1:-python}")
+  # shift
+  local syntax="python" # (was local syntax="${1:-python}")
+  vim -c \
+    "let g:startify_disable_at_vimenter = 1 |\
+    set bt=nofile ls=0 noru nonu nornu |\
+    hi ColorColumn ctermbg=NONE |\
+    hi VertSplit ctermbg=NONE |\
+    hi NonText ctermfg=0 |\
+    Codi $syntax" "$@"
+}
