@@ -180,3 +180,7 @@ codi() {
     hi NonText ctermfg=0 |\
     Codi $syntax" "$@"
 }
+
+[ -f /usr/local/etc/profile.d/z.sh ] && source /usr/local/etc/profile.d/z.sh
+
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
