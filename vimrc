@@ -56,7 +56,7 @@ Plug 'Shougo/unite-outline'
 Plug 'Shougo/neoyank.vim'
 
 """" Try out
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'osyo-manga/vim-hopping'
 Plug 'osyo-manga/vim-over'  "Replace overview
 Plug 'metakirby5/codi.vim'  "Interactive scratchpad (python&co) - also as shell alias
@@ -132,6 +132,9 @@ set tags=./tags;
 set laststatus=2
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
+" Max columns definition for gqq (0 won't auto-add newlines)
+set tw=0   " 119
+
 nnoremap <silent> <leader>aw :ArgWrap<CR>
 
 """ Autocmd
@@ -142,7 +145,7 @@ if has("autocmd")
 	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 	autocmd FileType python setlocal expandtab
-	autocmd FileType python let &colorcolumn=join(range(80,99),",")
+	autocmd FileType python let &colorcolumn=join(range(80,119),",")
 
 	autocmd FileType python let g:argwrap_tail_comma = 1	"Add trailing comma when wrapping
 
@@ -241,7 +244,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " validator
 " let g:validator_auto_open_quickfix = 1
 let g:validator_error_msg_format = "[%d/%d]"
-let g:validator_python_flake8_args="--max-line-length=99"
+let g:validator_python_flake8_args="--max-line-length=119"
 
 " vim-tmux-navigator
 let g:tmux_navigator_no_mappings = 1  "Screw default mappings: Control+hjkl
@@ -261,7 +264,8 @@ nmap <silent><Leader>m <Esc>:Pytest method<CR>
 " Cool flags: -quick-match -auto-preview
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 " Recursive file opening, asynchronous
-nmap <leader>p :Unite -no-split -start-insert -buffer-name=files file_rec/async<CR>
+" nmap <leader>p :Unite -no-split -start-insert -buffer-name=files file_rec/async<CR>
+nmap <leader>p :FZF<CR>
 " Show open buffers
 nmap <leader>l :Unite -no-split -quick-match -buffer-name=buffers buffer<CR>
 " Show outline
