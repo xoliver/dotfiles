@@ -45,6 +45,7 @@ ZSH_THEME="muse"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
+setopt HIST_IGNORE_ALL_DUPS
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -90,6 +91,8 @@ alias sl='sl -aF'
 
 alias gitk='/Applications/GitX.app/Contents/MacOS/GitX'
 alias gitx='/Applications/GitX.app/Contents/MacOS/GitX'
+alias 'gcod'='gco develop'
+alias 'gcom'='gco master'
 alias sub='/Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2'
 alias tmux='tmux -2'  # Colours!
 alias sz='source ~/.zshrc'
@@ -124,7 +127,7 @@ weather() {
 
 moon() {
 	# Retrieve moon information based on that amazing website
-	# Optional argument: date (YYY-MM-DD)
+	# Optional argument: date (YYYY-MM-DD)
 	if [ "$#" -ne 1  ]; then
 		date=""
 	else
