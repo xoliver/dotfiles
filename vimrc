@@ -1,3 +1,9 @@
+" Stupid fix while they sort things together, taken from
+" https://github.com/vim/vim/issues/3117#issuecomment-404052306
+if has('python3')
+  silent! python3 1
+endif
+
 " Install vim plug
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 

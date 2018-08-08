@@ -91,8 +91,9 @@ alias sl='sl -aF'
 
 alias gitk='/Applications/GitX.app/Contents/MacOS/GitX'
 alias gitx='/Applications/GitX.app/Contents/MacOS/GitX'
-alias 'gcod'='gco develop'
-alias 'gcom'='gco master'
+alias gcod='gco develop'
+alias gcom='gco master'
+alias gst='git status -sb'
 alias sub='/Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2'
 alias tmux='tmux -2'  # Colours!
 alias sz='source ~/.zshrc'

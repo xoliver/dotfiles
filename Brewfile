@@ -1,6 +1,7 @@
 cask_args appdir: "/Applications"
 
 tap "caskroom/cask"
+tap "caskroom/fonts"
 tap "caskroom/versions"
 tap "homebrew/bundle"
 tap "homebrew/core"
@@ -42,3 +43,5 @@ cask "shiftit"
 cask "skype"
 cask "spotify"
 cask "vlc"
+
+cask "font-firacode-nerd-font"
