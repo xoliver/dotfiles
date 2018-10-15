@@ -22,6 +22,7 @@ Plug 'tpope/vim-speeddating' | Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-obsession'
 Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
 Plug 'sanford1/unite-unicode'
+Plug 'ryanoasis/vim-devicons'
 
 """" Basics
 Plug 'tpope/vim-repeat'
@@ -72,6 +73,7 @@ call plug#end()
 
 """ Internal
 filetype plugin indent on
+set encoding=UTF-8
 
 set t_Co=256
 set background=dark
