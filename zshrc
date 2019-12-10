@@ -126,6 +126,7 @@ gdone() {
 	gcod
 	git pull
 	gb -d $branch
+	git remote prune origin
 }
 
 # Make sure fzf uses ag so git/svn/hg ignores are taken into account
