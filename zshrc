@@ -61,17 +61,15 @@ fi
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# python virtualenv
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
-export PYTHONDONTWRITEBYTECODE=1
-
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 alias rmbk='find . -name "*.pyc" -delete'
 alias sl='sl -aF'
 alias pbj='pbpaste | jq .'
+alias pbjc='pbpaste | jq . | pbcopy'
+
+alias prp='pipenv run python'
 
 alias gitk='/Applications/GitX.app/Contents/MacOS/GitX'
 alias gitx='/Applications/GitX.app/Contents/MacOS/GitX'
@@ -119,6 +117,15 @@ moon() {
 		date="$1"
 	fi
 	curl http://wttr.in/Moon@$date;
+}
+
+gdone() {
+	branch=$(git symbolic-ref --short HEAD)
+	gcom
+	git pull
+	gcod
+	git pull
+	gb -d $branch
 }
 
 # Make sure fzf uses ag so git/svn/hg ignores are taken into account

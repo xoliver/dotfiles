@@ -19,3 +19,7 @@
 
 [color]
 	ui = true
+[pager]
+	branch = false
+[include]
+	path = .gitconfig.local
