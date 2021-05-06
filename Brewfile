@@ -6,11 +6,12 @@ tap "caskroom/versions"
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "moncho/dry"
 
 brew "git"
-brew "c2048"
-brew "certbot"
+brew "dry"  # CLI docker manager
 brew "entr"  # Run command when file changes
+brew "fd"  # Better 'find' https://github.com/sharkdp/fd
 brew "fzf"
 brew "python3"
 brew "grc"  # Log prettifier
@@ -37,7 +38,6 @@ cask "karabiner"
 cask "karabiner-elements"
 cask "keybase"
 cask "lastpass"
-cask "macdown"
 cask "meld"
 cask "shiftit"
 cask "skype"

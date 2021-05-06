@@ -4,10 +4,6 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="muse"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
@@ -29,8 +25,7 @@ plugins=(
 	git
 	github
 	git-flow
-	grc
-	jira
+	# jira
 	httpie
 	pip
 	taskwarrior
@@ -45,7 +40,7 @@ source $ZSH/oh-my-zsh.sh
 
 export TERM=screen-256color
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/Users/xavier/bin:/usr/local/opt/go/libexec/bin"
+export PATH="/Users/xavier/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/Users/xavier/bin:/usr/local/opt/go/libexec/bin"
 export GOPATH="/usr/local/Cellar/go/1.3.1/"
 
 # You may need to manually set your language environment
@@ -74,24 +69,16 @@ alias prp='pipenv run python'
 alias gitk='/Applications/GitX.app/Contents/MacOS/GitX'
 alias gitx='/Applications/GitX.app/Contents/MacOS/GitX'
 alias gcod='gco develop'
-alias gcom='gco master'
+alias gcom='gco main &> /dev/null || gco master'
 alias gst='git status -sb'
 alias sub='/Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2'
 alias tmux='tmux -2'  # Colours!
 alias sz='source ~/.zshrc'
 alias vz='vim ~/.zshrc'
+alias vt='vim ~/.tmux.conf'
 alias vv='vim ~/.vimrc'
 
 alias q='make quicktest'
-
-if [[ `ssh-add -l` != *id_rsa* ]]
-then
-	echo "Adding ssh key to ssh-agent"
-	ssh-add ~/.ssh/id_rsa
-fi
-
-# Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
 
 # Setting for the new UTF-8 terminal support in Lion
 LC_CTYPE=en_US.UTF-8
@@ -180,3 +167,11 @@ codi() {
 [ -f /usr/local/etc/profile.d/z.sh ] && source /usr/local/etc/profile.d/z.sh
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+if [[ `ssh-add -l` != *id_rsa* ]]
+then
+	echo "Adding ssh key to ssh-agent"
+	ssh-add ~/.ssh/id_rsa
+fi
+
+

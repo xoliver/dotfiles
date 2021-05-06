@@ -77,7 +77,7 @@ set encoding=UTF-8
 
 set t_Co=256
 set background=dark
-set clipboard=unnamed  "Enable copy-paste through tmux
+set clipboard=unnamed  "Enable copy-paste through tmux and in OSX
 
 set confirm  "Confirm when switching away from unsaved tab
 
@@ -117,7 +117,7 @@ set noexpandtab
 
 """ Scroll, line numbers
 set number	"Show line numbers
-set relativenumber   "Show relative line numbers
+" set relativenumber   "Show relative line numbers
 set lazyredraw  "Lazy redraw of screen, improves speed of relative numbers
 set scrolloff=10   "Offset when scrolling
 set cursorline    "Show active line
