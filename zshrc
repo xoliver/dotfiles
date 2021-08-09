@@ -66,8 +66,7 @@ alias pbjc='pbpaste | jq . | pbcopy'
 
 alias prp='pipenv run python'
 
-alias gitk='/Applications/GitX.app/Contents/MacOS/GitX'
-alias gitx='/Applications/GitX.app/Contents/MacOS/GitX'
+alias jq='jq --sort-keys'
 alias gcod='gco develop'
 alias gcom='gco main &> /dev/null || gco master'
 alias gst='git status -sb'
@@ -77,8 +76,6 @@ alias sz='source ~/.zshrc'
 alias vz='vim ~/.zshrc'
 alias vt='vim ~/.tmux.conf'
 alias vv='vim ~/.vimrc'
-
-alias q='make quicktest'
 
 # Setting for the new UTF-8 terminal support in Lion
 LC_CTYPE=en_US.UTF-8
@@ -164,9 +161,11 @@ codi() {
     Codi $syntax" "$@"
 }
 
-[ -f /usr/local/etc/profile.d/z.sh ] && source /usr/local/etc/profile.d/z.sh
+joke() {
+	curl -s -H 'Accept: application/json' https://icanhazdadjoke.com/ | jq '.joke'
+}
 
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+[ -f /usr/local/etc/profile.d/z.sh ] && source /usr/local/etc/profile.d/z.sh
 
 if [[ `ssh-add -l` != *id_rsa* ]]
 then
@@ -174,4 +173,9 @@ then
 	ssh-add ~/.ssh/id_rsa
 fi
 
+eval $(thefuck --alias)
 
+export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
+
+[ -f ~/.zshrc.secrets ] && source ~/.zshrc.secrets
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
