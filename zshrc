@@ -81,28 +81,6 @@ alias vv='vim ~/.vimrc'
 LC_CTYPE=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 
-weather() {
-	# Retrieve weather information based on that amazing website
-	# Optional argument: airport code or city name
-	if [ "$#" -ne 1  ]; then
-		location="edinburgh"
-	else
-		location="$1"
-	fi
-	curl "http://wttr.in/$location?m";
-}
-
-moon() {
-	# Retrieve moon information based on that amazing website
-	# Optional argument: date (YYYY-MM-DD)
-	if [ "$#" -ne 1  ]; then
-		date=""
-	else
-		date="$1"
-	fi
-	curl http://wttr.in/Moon@$date;
-}
-
 gdone() {
 	branch=$(git symbolic-ref --short HEAD)
 	gcom
@@ -146,24 +124,6 @@ runto() {
 	fi
 }
 
-# Codi
-# Usage: codi [filename]  (was [filetype] [filename])
-codi() {
-  # local syntax="${1:-python}")
-  # shift
-  local syntax="python" # (was local syntax="${1:-python}")
-  vim -c \
-    "let g:startify_disable_at_vimenter = 1 |\
-    set bt=nofile ls=0 noru nonu nornu |\
-    hi ColorColumn ctermbg=NONE |\
-    hi VertSplit ctermbg=NONE |\
-    hi NonText ctermfg=0 |\
-    Codi $syntax" "$@"
-}
-
-joke() {
-	curl -s -H 'Accept: application/json' https://icanhazdadjoke.com/ | jq '.joke'
-}
 
 [ -f /usr/local/etc/profile.d/z.sh ] && source /usr/local/etc/profile.d/z.sh
 
@@ -179,3 +139,4 @@ export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/h
 
 [ -f ~/.zshrc.secrets ] && source ~/.zshrc.secrets
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+[ -f ~/.zshrc.fun ] && source ~/.zshrc.fun
