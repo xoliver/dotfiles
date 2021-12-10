@@ -61,8 +61,8 @@ alias mv='mv -i'
 alias rm='rm -i'
 alias rmbk='find . -name "*.pyc" -delete'
 alias sl='sl -aF'
-alias pbj='pbpaste | jq .'
-alias pbjc='pbpaste | jq . | pbcopy'
+alias pbj='pbpaste | jq --sort-keys .'
+alias pbjc='pbpaste | jq --sort-keys . | pbcopy'
 
 alias prp='pipenv run python'
 
