@@ -8,6 +8,8 @@ ln -sf `pwd`/zshrc.fun ~/.zshrc.fun
 ln -sf `pwd`/vimrc ~/.vimrc
 ln -sf `pwd`/tmux.conf ~/.tmux.conf
 ln -sf `pwd`/gitconfig ~/.gitconfig
+mkdir -p ~/.hammerspoon
+ln -sf `pwd`/init.lua ~/.hammerspoon/init.lua
 mkdir -p ~/.config/karabiner/
 ln -sf `pwd`/karabiner.json ~/.config/karabiner/karabiner.json
 mkdir -p ~/.tmux/plugins

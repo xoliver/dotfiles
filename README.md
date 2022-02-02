@@ -1,4 +1,4 @@
-configs
+[configs](configs)
 =======
 
 Configuration files
