@@ -34,3 +34,4 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # download vim colourtheme
 # set up pyenv, pipx (awscli, pipenv)
 # iterm option+right/left to move words: https://stackoverflow.com/questions/2212203/moving-a-word-forward-in-z-shell/41030092#41030092
+# ALSO mark left option as ESC+ to be able to have alt+backspace delete word and not character

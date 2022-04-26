@@ -35,6 +35,7 @@ brew "z"
 brew "zsh-syntax-highlighting"
 
 cask "alfred"
+cask "bitwarden"
 cask "hammerspoon"
 cask "iterm2"
 cask "karabiner-elements"
