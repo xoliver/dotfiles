@@ -63,10 +63,10 @@ Plug 'Shougo/unite-outline'
 Plug 'Shougo/neoyank.vim'
 
 """" Try out
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'osyo-manga/vim-hopping'
 Plug 'osyo-manga/vim-over'  "Replace overview
-Plug 'metakirby5/codi.vim'  "Interactive scratchpad (python&co) - also as shell alias
 
 call plug#end()
 
@@ -273,7 +273,7 @@ nmap <silent><Leader>m <Esc>:Pytest method<CR>
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 " Recursive file opening, asynchronous
 " nmap <leader>p :Unite -no-split -start-insert -buffer-name=files file_rec/async<CR>
-nmap <leader>p :FZF<CR>
+nmap <leader>p :Files<CR>
 " Show open buffers
 nmap <leader>l :Unite -no-split -quick-match -buffer-name=buffers buffer<CR>
 " Show outline
@@ -308,9 +308,8 @@ endfunction
 "Use kj to leave insert mode
 inoremap kj <ESC>
 
+" Jump from python file to test file
 autocmd FileType python nnoremap <silent> <leader>. <Esc>:call OpenPythonAlternate()<CR>
-
-let g:codi#width = 120
 
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0

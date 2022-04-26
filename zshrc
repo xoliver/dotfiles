@@ -29,9 +29,10 @@ plugins=(
 	httpie
 	pip
 	taskwarrior
+	thefuck  # Esc x2 to correct previous command
 	tmux
 	vagrant
-	zsh-syntax-highlighting
+	# zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -130,7 +131,7 @@ runto() {
 if [[ `ssh-add -l` != *id_rsa* ]]
 then
 	echo "Adding ssh key to ssh-agent"
-	ssh-add ~/.ssh/id_rsa
+	ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 fi
 
 eval $(thefuck --alias)
