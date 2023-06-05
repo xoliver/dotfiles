@@ -16,16 +16,15 @@ mkdir -p ~/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Folders and configs, mostly under application support
-# viscosity
-# .ssh
 # .aws (TODO)
 # .pip
 # .m2 (at least config)
 # slack
-# iterm2 (didn't work)
-# shiftit (didn't work)
+# iterm2 (didn't work) -> JSON!
 # datagrip, idea, pycharm
-# authy
+# .zshrc.local
+# Any work related dotfiles (.curative?)
+# .zshrc.secrets ?
 
 # Catalan keyboard for Mac: https://github.com/nadalsol/catalan-keyboard-layout-mac
 
@@ -33,5 +32,8 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # install vim plug
 # download vim colourtheme
 # set up pyenv, pipx (awscli, pipenv)
-# iterm option+right/left to move words: https://stackoverflow.com/questions/2212203/moving-a-word-forward-in-z-shell/41030092#41030092
+# iterm option+right/left to move words:
+#    https://stackoverflow.com/questions/2212203/moving-a-word-forward-in-z-shell/41030092#41030092
 # ALSO mark left option as ESC+ to be able to have alt+backspace delete word and not character
+#
+# * Run fzf installer as provided by brew to incorporate in the shell (zshrc already calls it)

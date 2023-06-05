@@ -16,6 +16,7 @@ brew "fd"  # Better 'find' https://github.com/sharkdp/fd
 brew "fzf"
 brew "python3"
 brew "grc"  # Log prettifier
+brew "gron"  # Make JSON greppable https://github.com/tomnomnom/gron
 brew "htop"
 brew "hub"
 brew "imagemagick"

@@ -25,3 +25,6 @@
 	path = .gitconfig.local
 [pull]
 	ff = only
+[fetch]
+	# Automatically remove references to deleted remote branches when fetching/pulling
+	prune = true

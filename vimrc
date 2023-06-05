@@ -56,6 +56,7 @@ Plug 'tmhedberg/SimpylFold'
 """" Specific file types
 Plug 'vim-scripts/csv.vim', {'for': 'csv'}
 Plug 'elzr/vim-json', {'for': ['javascript', 'json']}
+Plug 'hashivim/vim-terraform'
 
 """" Unite
 Plug 'Shougo/vimproc.vim', {'do': 'make'}  | Plug 'Shougo/unite.vim'

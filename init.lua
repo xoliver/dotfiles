@@ -42,9 +42,13 @@ spoon.SpoonInstall:andUse(
         hotkeys = {
             u = "Google Chrome",
             i = "iTerm",
+            j = "IntelliJ IDEA",
             o = "Slack",
+            g = "DataGrip",
             ["]"] = "Spotify",
             ["["] = "Notion",
+            l = "Linear",
+            z = "zoom.us",
         }
     }
 )
@@ -53,19 +57,19 @@ spoon.SpoonInstall:andUse(
     "Emojis",
     {
         hotkeys = {
-            toggle = {HYPER, "j"},
+            toggle = {HYPER, "e"},
         }
     }
 )
 
-spoon.SpoonInstall:andUse(
-    "MicMute",
-    {
-        hotkeys = {
-            toggle = {HYPER, "q"},
-        }
-    }
-)
+-- spoon.SpoonInstall:andUse(
+--     "MicMute",
+--     {
+--         hotkeys = {
+--             toggle = {HYPER, "q"},
+--         }
+--     }
+-- )
 
 -- From https://zzamboni.org/post/my-hammerspoon-configuration-with-commentary/
 spoon.SpoonInstall:andUse(
@@ -86,7 +90,7 @@ spoon.SpoonInstall:andUse(
                     col.yellow
                 },
                 ["Pinyin - Simplified"] = {col.red},
-                ["Greek"] = {col.blue, col.white, col.blue}
+                ["Greek – Polytonic"] = {col.blue, col.white, col.blue}
             },
             allScreens = true,
             indicatorAlpha = 0.25
@@ -127,34 +131,6 @@ function launch_bitwarden_search()
 end
 hs.hotkey.bind(HYPER, "y", launch_bitwarden_search)
 
-function go_lunch()
-  hs.application.launchOrFocus("Slack")
-  local app = hs.appfinder.appFromName("Slack")
-  if (app ~= nil) then
-      local activated = app:activate(true)
-      if (activated) then
-          -- for Dock icon mode
-          -- app:selectMenuItem({"View", "Search vault"})
-          -- for menubar item mode
-          hs.eventtap.keyStroke({"cmd"}, "1")
-          hs.eventtap.keyStroke({"shift", "cmd"}, "y")
-          hs.eventtap.keyStrokes("Lunching")
-          hs.eventtap.keyStroke({"shift"}, "tab")
-          hs.eventtap.keyStroke({}, "return")
-          -- hs.timer.usleep(1000000)
-          hs.eventtap.keyStrokes("pizza")
-          hs.eventtap.keyStroke({}, "return")
-          hs.eventtap.keyStroke({"cmd"}, "return")
-      else
-          hs.alert.show("😕 Unable to activate Slack app")
-      end
-  else
-      hs.alert.show("😕 Slack app not found")
-  end
-end
-hs.hotkey.bind(HYPER, "l", go_lunch)
-
-
 mi=hs.midi.new("MPK mini")
 -- mi:callback(function(object, deviceName, commandType, description, metadata)
 --     print("object: " .. tostring(object))
@@ -163,3 +139,12 @@ mi=hs.midi.new("MPK mini")
 --     print("description: " .. description)
 --     print("metadata: " .. hs.inspect(metadata))
 --   end)
+
+spoon.SpoonInstall:andUse(
+    "MrXShortcuts",
+    {
+        hotkeys = {
+            toggle = {HYPER, "x"},
+        }
+    }
+)
