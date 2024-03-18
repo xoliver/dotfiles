@@ -66,15 +66,12 @@ alias sl='sl -aF'
 alias pbj='pbpaste | jq --sort-keys .'
 alias pbjc='pbpaste | jq --sort-keys . | pbcopy'
 
-alias prp='pipenv run python'
-
 alias jq='jq --sort-keys'
 alias gcoi='gco $(git branch | fzf --height=20% --layout=reverse --border)'
 alias gcod='gco develop'
 alias gcom='gco master &> /dev/null || gco main'
 alias gst='git status -sb'
 alias ghprv="gh pr view --web"
-alias sub='/Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2'
 alias tmux='tmux -2'  # Colours!
 alias sz='source ~/.zshrc'
 alias vz='vim ~/.zshrc'

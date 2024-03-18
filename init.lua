@@ -42,12 +42,13 @@ spoon.SpoonInstall:andUse(
         hotkeys = {
             u = "Google Chrome",
             i = "iTerm",
-            j = "IntelliJ IDEA",
+            j = "IntelliJ IDEA Ultimate",
             o = "Slack",
             g = "DataGrip",
             ["]"] = "Spotify",
             ["["] = "Notion",
             l = "Linear",
+            v = "VSCodium",
             z = "zoom.us",
         }
     }
@@ -141,7 +142,7 @@ mi=hs.midi.new("MPK mini")
 --   end)
 
 spoon.SpoonInstall:andUse(
-    "MrXShortcuts",
+    "Shortcuts",
     {
         hotkeys = {
             toggle = {HYPER, "x"},

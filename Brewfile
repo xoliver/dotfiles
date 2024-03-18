@@ -8,6 +8,8 @@ tap "homebrew/services"
 tap "moncho/dry"
 tap "remind101/formulae"  # Assume-role
 
+brew "atuin"
+brew "httpie"
 brew "git"
 brew "assume-role"
 brew "dry"  # CLI docker manager

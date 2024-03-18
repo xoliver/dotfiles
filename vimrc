@@ -34,8 +34,10 @@ Plug 'bronson/vim-trailing-whitespace'
 """" Coding
 Plug 'FooSoft/vim-argwrap'					"Wrap/unwrap things
 Plug 'tpope/vim-commentary'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'maralla/validator.vim'  "More sophisticated async linter
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'  - Commented due to
+" missing python with vim
+" Plug 'maralla/validator.vim'  "More sophisticated async linter - commented
+" due to missing python in vim
 Plug 'xoliver/python-alternate.vim'
 
 """" Git
@@ -321,6 +323,8 @@ set foldlevel=99
 let g:SimpylFold_docstring_preview=1
 let g:SimpylFold_fold_docstring = 0
 
+" CSV default
+let g:csv_delim=','
 
 " Need to include ~/.vim/bundle/unite-outline/autoload/unite/sources/outline/vimwiki.vim
 " Clone of defaul markdown.vim to bypass limitations sine outline-vimwiki won't work
